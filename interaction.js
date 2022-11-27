@@ -37,11 +37,15 @@ function draw() {
 
     // a collision will happen
     line(objx, objy, startX, startY);
-    text(theta, 50, 50);
+    fill(0);
+    textSize(20);
+
+    text("θ = " + Math.round(theta), windowWidth - 200, 50);
+    fill(235);
+
     let count = 0;
     function drawIntersection(startX, startY, theta, isRight) {
         const thetaPrime = 180 - theta;
-        calculateNumImages(theta);
         const newCLineX = isRight ? leftLineX : rightLineX;
         const newYDistance = (!isRight ? -1 : 1) * (rightLineX - leftLineX) * tan(thetaPrime)
         const newCLineY = startY + newYDistance;
@@ -74,10 +78,6 @@ function draw() {
     }
 }
 
-function calculateNumImages(theta) {
-    const numImages = (Math.round(360 / theta) - 1);
-    text(numImages, 50, 200);
-}
 
 function drawMirrors(leftLineX, rightLineX, mirrorStartY, mirrorHeight, f = 200) {
     fill(f);

@@ -57,7 +57,7 @@ function draw() {
         } else {
             newObjX = leftLineX - distance;
         }
-        drawMirrors(leftLineX - count*mirrorXDistance, rightLineX + count*mirrorXDistance, mirrorStartY, mirrorHeight, 245);
+        drawMirrors(leftLineX - count*mirrorXDistance, rightLineX + count*mirrorXDistance, mirrorStartY, mirrorHeight);
         drawObject(newObjX, objy);
         setLineDash([5, 5]);
         line(startX, startY, newObjX, objy);
@@ -79,8 +79,7 @@ function draw() {
 }
 
 
-function drawMirrors(leftLineX, rightLineX, mirrorStartY, mirrorHeight, f = 200) {
-    fill(f);
+function drawMirrors(leftLineX, rightLineX, mirrorStartY, mirrorHeight) {
     rect(leftLineX, mirrorStartY, 10, mirrorHeight);
     rect(rightLineX, mirrorStartY, 10, mirrorHeight);
 }

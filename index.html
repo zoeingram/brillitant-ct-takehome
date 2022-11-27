@@ -108,7 +108,7 @@
                <img id="quiz_one_img_v1" height="500px" src="images/one_v1.png">
             </div>
             <div class="col-6">
-                <p>ADD BETTER TEXT: We can determine how many reflections will be visible in the mirror based on the number of incidence rays hitting the mirror. In this example, try and count how many reflections you'll see. </p>
+                <p>We can determine how many reflections will be visible in the mirror based on the number of times the incidence ray hits the mirror. In this example, try and count how many reflections you'll see. </p>
 
                 <button class="quiz_one_buttons" onclick="submitQuizAnswer('one', true)">1 reflection</button>
                 <button class="quiz_one_buttons" onclick="submitQuizAnswer('one', false)">2 reflections</button>
@@ -139,7 +139,7 @@
             <div class="col-6">
                 <p> Final question! How many reflections here?</p>
 
-                <button class="quiz_three_buttons" onclick="submitQuizAnswer('three', false)">2 reflection</button>
+                <button class="quiz_three_buttons" onclick="submitQuizAnswer('three', false)">2 reflections</button>
                 <button class="quiz_three_buttons" onclick="submitQuizAnswer('three', true)">3 reflections</button>
                 <button class="quiz_three_buttons" onclick="submitQuizAnswer('three', false)">5 reflections</button>
                 <p class="green_text hidden" id="quiz_three_rightAnswer">That's right! The viewer will be able to see 3 reflections.</p>
@@ -147,14 +147,16 @@
             </div>
         </div>
         <div class="row">
-            <div class='col-12'>
+            <div class='col-8'>
                 <p>Time to put it all together. Using your <b>left and right arrow keys</b>, notice how moving the angle of the eye to the object can create multiple reflections in the mirrors.</p>
+                <p>Also notice the change in θ, on the right side of the diagram. Notice how the angles of the incidence and reflective rays always have the same θ.</p>
             </div>
         </div>
     </div>
-</body>
     <script src='p5.js'></script>
     <script src='interaction.js'></script>
     <script src='buttons.js'></script>
+</body>
+  
 
 </html>

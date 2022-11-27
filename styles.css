@@ -1,9 +1,7 @@
 html {
     font-family: "Lato";
 }
-.row {
-    padding-bottom: 10%;
-}
+
 .red_text {
     color: red;
 }
@@ -17,4 +15,15 @@ html {
 }
 .visible {
     visibility: visible;
+}
+
+button {
+    background: white;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 4px 8px;
+}
+
+button:hover {
+    box-shadow: 1px 0px 3px 0px rgba(0,0,0,0.57);
 }

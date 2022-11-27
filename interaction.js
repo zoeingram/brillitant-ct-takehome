@@ -8,15 +8,15 @@ let eyex = 500;
 
 function draw() {
     background(255);
-    const leftLineX = 200;
-    const rightLineX = 800;
+    const leftLineX = 700;
+    const rightLineX = 900;
     const mirrorStartY = 20;
     const mirrorHeight = 500;
     const mirrorEndY = mirrorStartY + mirrorHeight
 
-    const objx = 400;
-    const objy = mirrorHeight - 100
-    const eyey = mirrorHeight + 200;
+    const objx = 800;
+    const objy = mirrorHeight - 10
+    const eyey = mirrorHeight + 50;
 
     let theta = 90 + atan((objx - eyex) / (objy - eyey));
 
@@ -33,11 +33,11 @@ function draw() {
     if (startY > mirrorEndY) {
         return;
     }
-    
+
     // a collision will happen
     line(objx, objy, startX, startY);
     text(theta, 50, 50);
-    let count = 1;
+    let count = 0;
     function drawIntersection(startX, startY, theta, isRight) {
         const thetaPrime = 180 - theta;
         calculateNumImages(theta);
@@ -54,22 +54,19 @@ function draw() {
             newObjX = leftLineX - distance;
         }
         drawObject(newObjX, objy);
-        if (newCLineY > mirrorStartY) {
-            drawIntersection(newCLineX, newCLineY, thetaPrime, !isRight);
+        text(count, newObjX, objy);
+        setLineDash([5, 5]);
+        line(startX, startY, newObjX, objy);
+        setLineDash([]);
+        if (newCLineY < mirrorStartY) {
+            return;
         }
+        drawIntersection(newCLineX, newCLineY, thetaPrime, !isRight);
     }
 
 
     if (reflectLineYDist < mirrorEndY) {
         const isRight = eyex < objx;
-
-        let newObjX;
-        if (isRight) {
-            newObjX = Math.abs(colisionLineX - objx) + rightLineX;
-        } else {
-            newObjX = leftLineX - Math.abs(colisionLineX - objx);
-        }
-        drawObject(newObjX, objy);
         drawIntersection(startX, startY, theta, isRight);
     } else {
         text('no-collision', 100, 200);
@@ -99,13 +96,17 @@ function drawEye(x, y) {
     fill(200);
 }
 
+function setLineDash(list) {
+    drawingContext.setLineDash(list);
+}
+
 function keyPressed() {
     debugger;
     if (keyCode === LEFT_ARROW) {
-        eyex -= 50;
+        eyex -= 30;
         draw();
     } else if (keyCode === RIGHT_ARROW) {
-        eyex += 50
+        eyex += 30
         draw();
     }
 }

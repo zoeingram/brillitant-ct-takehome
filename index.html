@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brilliant.org CT Takehome</title>
     <link href="simple-grid.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Lato">
 </head>
@@ -103,11 +105,56 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <p>This is pretty straightforward, but things start to get more interesting when light is reflected more than once. Images of nearby objects can even appear far away, and if you've ever put two mirrors in the same room, you know that when the angle is just right, you can peer into an infinite abyss. Why?</p>
+               <img id="quiz_one_img_v1" height="500px" src="images/one_v1.png">
+            </div>
+            <div class="col-6">
+                <p>ADD BETTER TEXT: We can determine how many reflections will be visible in the mirror based on the number of incidence rays hitting the mirror. In this example, try and count how many reflections you'll see. </p>
+
+                <button class="quiz_one_buttons" onclick="submitQuizAnswer('one', true)">1 reflection</button>
+                <button class="quiz_one_buttons" onclick="submitQuizAnswer('one', false)">2 reflections</button>
+                <button class="quiz_one_buttons" onclick="submitQuizAnswer('one', false)">3 reflections</button>
+                <p class="green_text hidden" id="quiz_one_rightAnswer">That's right! The viewer will be able to see 1 reflection.</p>
+                <p class="red_text hidden" id="quiz_one_wrongAnswer">Close, but not quite. Try counting the number of angles that hit the mirrors.</p>
+            </div>
+        </div>
+        <div class="row">
+          
+            <div class="col-6">
+                <p>Let's try another. How many reflections in this situation? </p>
+
+                <button class="quiz_two_buttons" onclick="submitQuizAnswer('two', false)">1 reflection</button>
+                <button class="quiz_two_buttons" onclick="submitQuizAnswer('two', true)">2 reflections</button>
+                <button class="quiz_two_buttons" onclick="submitQuizAnswer('two', false)">3 reflections</button>
+                <p class="green_text hidden" id="quiz_two_rightAnswer">That's right! The viewer will be able to see 2 reflections.</p>
+                <p class="red_text hidden" id="quiz_two_wrongAnswer">Close, but not quite. Try counting the number of angles that hit the mirrors.</p>
+            </div>
+            <div class="col-6">
+                <img id="quiz_two_img_v1" height="500px" src="images/two_v1.png">
+             </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+               <img id="quiz_three_img_v1" height="400px" src="images/three_v1.png">
+            </div>
+            <div class="col-6">
+                <p> Final question! How many reflections here?</p>
+
+                <button class="quiz_three_buttons" onclick="submitQuizAnswer('three', false)">2 reflection</button>
+                <button class="quiz_three_buttons" onclick="submitQuizAnswer('three', true)">3 reflections</button>
+                <button class="quiz_three_buttons" onclick="submitQuizAnswer('three', false)">5 reflections</button>
+                <p class="green_text hidden" id="quiz_three_rightAnswer">That's right! The viewer will be able to see 3 reflections.</p>
+                <p class="red_text hidden" id="quiz_three_wrongAnswer">Close, but not quite. Try counting the number of angles that hit the mirrors.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-12'>
+                <p>Time to put it all together. Using your <b>left and right arrow keys</b>, notice how moving the angle of the eye to the object can create multiple reflections in the mirrors.</p>
             </div>
         </div>
     </div>
 </body>
     <script src='p5.js'></script>
     <script src='interaction.js'></script>
+    <script src='buttons.js'></script>
+
 </html>

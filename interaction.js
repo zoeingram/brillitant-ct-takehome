@@ -4,7 +4,7 @@ function setup() {
     angleMode(DEGREES);
 }
 
-let eyex = 500;
+let eyex = 800;
 
 function draw() {
     background(255);
@@ -102,7 +102,6 @@ function setLineDash(list) {
 }
 
 function keyPressed() {
-    debugger;
     if (keyCode === LEFT_ARROW) {
         eyex -= 15;
         draw();
@@ -111,3 +110,4 @@ function keyPressed() {
         draw();
     }
 }
+

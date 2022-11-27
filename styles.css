@@ -4,3 +4,17 @@ html {
 .row {
     padding-bottom: 10%;
 }
+.red_text {
+    color: red;
+}
+
+.green_text {
+    color: green;
+}
+
+.hidden {
+    visibility: hidden;
+}
+.visible {
+    visibility: visible;
+}

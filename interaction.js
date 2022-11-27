@@ -10,6 +10,7 @@ function draw() {
     background(255);
     const leftLineX = 700;
     const rightLineX = 900;
+    const mirrorXDistance = rightLineX - leftLineX;
     const mirrorStartY = 20;
     const mirrorHeight = 500;
     const mirrorEndY = mirrorStartY + mirrorHeight
@@ -45,22 +46,22 @@ function draw() {
         const newYDistance = (!isRight ? -1 : 1) * (rightLineX - leftLineX) * tan(thetaPrime)
         const newCLineY = startY + newYDistance;
         line(startX, startY, newCLineX, newCLineY);
-        count += 1;
         let newObjX;
-        const distance = count * Math.abs(colisionLineX - objx);
+        const distance = count * mirrorXDistance + Math.abs(colisionLineX - objx);
         if (isRight) {
             newObjX = distance + rightLineX;
         } else {
             newObjX = leftLineX - distance;
         }
+        drawMirrors(leftLineX - count*mirrorXDistance, rightLineX + count*mirrorXDistance, mirrorStartY, mirrorHeight, 245);
         drawObject(newObjX, objy);
-        text(count, newObjX, objy);
         setLineDash([5, 5]);
         line(startX, startY, newObjX, objy);
         setLineDash([]);
         if (newCLineY < mirrorStartY) {
             return;
         }
+        count += 1;
         drawIntersection(newCLineX, newCLineY, thetaPrime, !isRight);
     }
 
@@ -78,8 +79,8 @@ function calculateNumImages(theta) {
     text(numImages, 50, 200);
 }
 
-function drawMirrors(leftLineX, rightLineX, mirrorStartY, mirrorHeight) {
-    fill(200);
+function drawMirrors(leftLineX, rightLineX, mirrorStartY, mirrorHeight, f = 200) {
+    fill(f);
     rect(leftLineX, mirrorStartY, 10, mirrorHeight);
     rect(rightLineX, mirrorStartY, 10, mirrorHeight);
 }
@@ -103,10 +104,10 @@ function setLineDash(list) {
 function keyPressed() {
     debugger;
     if (keyCode === LEFT_ARROW) {
-        eyex -= 30;
+        eyex -= 15;
         draw();
     } else if (keyCode === RIGHT_ARROW) {
-        eyex += 30
+        eyex += 15
         draw();
     }
 }

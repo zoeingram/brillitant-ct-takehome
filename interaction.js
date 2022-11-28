@@ -1,42 +1,43 @@
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight + 100);
     angleMode(DEGREES);
 }
 
-let eyex = 800;
+let eyeX = 800;
+const MIRROR_WIDTH = 10;
 
 function draw() {
     background(255);
-    const leftLineX = 700;
+    const leftLineX = 710;
     const rightLineX = 900;
     const mirrorXDistance = rightLineX - leftLineX;
     const mirrorStartY = 20;
     const mirrorHeight = 500;
     const mirrorEndY = mirrorStartY + mirrorHeight
 
-    const objx = 800;
-    const objy = mirrorHeight - 10
-    const eyey = mirrorHeight + 50;
+    const objX = 800;
+    const objY = mirrorHeight - 10
+    const eyeY = mirrorHeight + 50;
 
-    let theta = 90 + atan((objx - eyex) / (objy - eyey));
+    let theta = 90 + atan((objX - eyeX) / (objY - eyeY));
 
-    const colisionLineX = eyex < objx ? rightLineX : leftLineX;
-    const reflectLineXDist = colisionLineX - objx;
+    const colisionLineX = eyeX < objX ? rightLineX : leftLineX;
+    const reflectLineXDist = colisionLineX - objX;
     const reflectLineYDist = reflectLineXDist * tan(theta);
     const startX = colisionLineX;
-    const startY = objy - reflectLineYDist;
+    const startY = objY - reflectLineYDist;
 
-    drawMirrors(leftLineX, rightLineX, mirrorStartY, mirrorHeight);
-    drawObject(objx, objy);
-    drawEye(eyex, eyey);
-    line(eyex, eyey, objx, objy);
+    drawMirrors(leftLineX - MIRROR_WIDTH, rightLineX, mirrorStartY, mirrorHeight);
+    drawObject(objX, objY);
+    drawEye(eyeX, eyeY);
+    line(eyeX, eyeY, objX, objY);
     if (startY > mirrorEndY) {
         return;
     }
 
     // a collision will happen
-    line(objx, objy, startX, startY);
+    line(objX, objY, startX, startY);
     fill(0);
     textSize(20);
 
@@ -51,16 +52,18 @@ function draw() {
         const newCLineY = startY + newYDistance;
         line(startX, startY, newCLineX, newCLineY);
         let newObjX;
-        const distance = count * mirrorXDistance + Math.abs(colisionLineX - objx);
+        const distance = count * mirrorXDistance + Math.abs(colisionLineX - objX);
         if (isRight) {
             newObjX = distance + rightLineX;
         } else {
             newObjX = leftLineX - distance;
         }
-        drawMirrors(leftLineX - count*mirrorXDistance, rightLineX + count*mirrorXDistance, mirrorStartY, mirrorHeight);
-        drawObject(newObjX, objy);
+        if (count > 0) {
+            drawMirrors(leftLineX - count*mirrorXDistance, rightLineX + count*mirrorXDistance, mirrorStartY, mirrorHeight);
+        }
+        drawObject(newObjX, objY);
         setLineDash([5, 5]);
-        line(startX, startY, newObjX, objy);
+        line(startX, startY, newObjX, objY);
         setLineDash([]);
         if (newCLineY < mirrorStartY) {
             return;
@@ -71,7 +74,7 @@ function draw() {
 
 
     if (reflectLineYDist < mirrorEndY) {
-        const isRight = eyex < objx;
+        const isRight = eyeX < objX;
         drawIntersection(startX, startY, theta, isRight);
     } else {
         text('no-collision', 100, 200);
@@ -102,11 +105,10 @@ function setLineDash(list) {
 
 function keyPressed() {
     if (keyCode === LEFT_ARROW) {
-        eyex -= 15;
+        eyeX -= 15;
         draw();
     } else if (keyCode === RIGHT_ARROW) {
-        eyex += 15
+        eyeX += 15
         draw();
     }
 }
-

@@ -74,13 +74,6 @@ function draw() {
     // Draw the line to the colliding mirror
     line(objX, objY, colisionLineX, collisionLineY);
     
-    // Write theta to the screen
-    fill(0);
-    textSize(20);
-    // Our calculations are technically not using exactly theta; they are using the converse of theta.
-    // The math works either way, but for display, subtract 90.
-    text("θ = " + Math.round(Math.abs(theta-90)), windowWidth - 200, 50);
-    fill(235);
 
     /**
      * This function draws the remaining reflection collisions as well as the reflected objects
@@ -143,6 +136,14 @@ function draw() {
 
     // Start the recursion
     drawReflection(collisionLineY, theta, collisionOnRightSide);
+
+    // Write theta to the screen
+    fill(0);
+    textSize(20);
+    // Our calculations are technically not using exactly theta; they are using the converse of theta.
+    // The math works either way, but for display, subtract 90.
+    text("θ = " + Math.round(Math.abs(theta-90)), windowWidth - 200, 15);
+    fill(235);
 }
 
 
